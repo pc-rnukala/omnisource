@@ -12,4 +12,6 @@
 	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 	<bean id="proximityPerkDbManager" class="com.omnisource.manager.OmniDbManager">
 	</bean>
+	<bean id="shopStyleDelegate" class="com.omnisource.shopstyle.delegate.ShopStyleDelegate">
+	</bean>
 </beans>

@@ -6,8 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.nio.charset.Charset;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,8 +21,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import com.jayway.jsonpath.JsonPath;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -48,23 +45,12 @@ public class TestSearchController {
 	public void testSearchProducts() throws Exception {
 		long startTime = System.currentTimeMillis();
 		ResultActions resultActions = mockMvc.perform(post(
-				APIRequestMappings.SEARCH_PRODUCT).param("fts", "").param(
-				"filters", ""));
+				APIRequestMappings.SEARCH_PRODUCT).param("fts", "dress"));
 		resultActions.andExpect(status().isOk());
 		resultActions.andExpect(content().contentType(APPLICATION_JSON_UTF8));
 		MvcResult result = resultActions.andReturn();
 		MockHttpServletResponse response = result.getResponse();
 		String resultStr = response.getContentAsString();
-		Assert.assertNotNull(resultStr);
-		String userGuidValue = JsonPath.read(resultStr,
-				"$.spData.user.userGuid");
-		String userGuid = userGuidValue;
-		Assert.assertNotNull(userGuid);
-		resultActions.andExpect(status().isOk());
-		resultActions.andExpect(content().contentType(APPLICATION_JSON_UTF8));
-		result = resultActions.andReturn();
-		response = result.getResponse();
-		resultStr = response.getContentAsString();
 		Assert.assertNotNull(resultStr);
 		System.out.println("TimeTaken: "
 				+ (System.currentTimeMillis() - startTime) + "");
