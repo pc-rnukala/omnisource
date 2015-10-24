@@ -42,9 +42,9 @@ public class OrderImpl implements Order {
 	 */
 	@Override
 	@Id
-	@Column(name = "card_id")
+	@Column(name = "order_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonProperty("card_id")
+	@JsonProperty("order_id")
 	public Long getId() {
 		return id;
 	}
@@ -167,7 +167,7 @@ public class OrderImpl implements Order {
 	 * @see com.omnisource.data.Order#getExternalInvoiceId()
 	 */
 	@Override
-	@Column(name = "created_date")
+	@Column(name = "external_invoice_id")
 	public String getExternalInvoiceId() {
 		return externalInvoiceId;
 	}

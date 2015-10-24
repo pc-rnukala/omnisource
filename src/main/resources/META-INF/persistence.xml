@@ -9,7 +9,9 @@
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<non-jta-data-source>dataSource</non-jta-data-source>
-		<class>com.proximityperks.data.impl.UserImpl</class>
+		<class>com.omnisource.data.UserImpl</class>
+		<class>com.omnisource.data.CardAccountImpl</class>
+		<class>com.omnisource.data.OrderImpl</class>
 		<properties>
 			<!-- Added this to produce formatted sql statements -->
 			<property name="hibernate.format_sql" value="false" />
