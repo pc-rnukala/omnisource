@@ -5,7 +5,7 @@
     http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
 
-	<persistence-unit name="money2020"
+	<persistence-unit name="omnidb"
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<non-jta-data-source>dataSource</non-jta-data-source>
