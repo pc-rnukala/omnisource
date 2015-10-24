@@ -11,6 +11,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.omnisource.shopstyle.request.SearchProductRequest;
 
 public class ShopStyleDelegate {
