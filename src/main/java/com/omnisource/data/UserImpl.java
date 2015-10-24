@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * @author rnukala
+ * @author Jebastian Ponsekar
  * 
  */
 @Entity

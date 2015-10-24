@@ -81,6 +81,7 @@ DROP TABLE IF EXISTS `CARD_ACCOUNT`;
 CREATE TABLE `CARD_ACCOUNT` (
   `card_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL,
+  `customer_id` varchar(255) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `card_type` varchar(255) DEFAULT NULL,
