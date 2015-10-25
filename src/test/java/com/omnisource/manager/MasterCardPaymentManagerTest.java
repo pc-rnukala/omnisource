@@ -52,15 +52,20 @@ public class MasterCardPaymentManagerTest {
 		Assert.assertNotNull(response);
 		Assert.assertNotNull(response.getTokenId());
 		Assert.assertNotNull(response.getCustomerId());
-		//String tokenId = "f6900e0a-7139-4d57-a8d0-cb05fd03b80d";
-		//masterCardRequest.setTokenId(tokenId);
+		masterCardRequest.setTokenId(response.getTokenId());
+		masterCardRequest.setCustomerId(response.getCustomerId());
 		masterCardRequest.setAmount(Double.valueOf(100));
 		masterCardRequest.setPaymentDescription("Test description");
+		masterCardRequest.setReferenceNumber("Testrefer");
 		response = masterCardPaymentManager
 				.createPayment(masterCardRequest);
 		Assert.assertNotNull(response);
 		Assert.assertNotNull(response.getCardPaymentId());
-
+		masterCardRequest.setPaymentId(response.getCardPaymentId());
+		response = masterCardPaymentManager
+				.findPayment(masterCardRequest);
+		Assert.assertNotNull(response);
+		Assert.assertNotNull(response.getCardPaymentId());
 	}
 
 	@Test

@@ -5,6 +5,7 @@ public class MasterCardResponse {
 	private String cardPaymentId;
 	private String tokenId;
 	private String invoiceId;
+	
 	public String getCustomerId() {
 		return customerId;
 	}

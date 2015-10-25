@@ -14,6 +14,7 @@ public class MasterCardRequest {
 	private String tokenId;
 	private Double amount;
 	private String paymentDescription;
+	private String paymentId;
 
 	public int getCardExpMonth() {
 		return cardExpMonth;
@@ -119,4 +120,11 @@ public class MasterCardRequest {
 		this.paymentDescription = paymentDescription;
 	}
 
+	public String getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(String paymentId) {
+		this.paymentId = paymentId;
+	}
 }

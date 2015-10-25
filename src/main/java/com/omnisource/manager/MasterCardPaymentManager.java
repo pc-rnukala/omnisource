@@ -143,7 +143,34 @@ public class MasterCardPaymentManager {
 					.set("description",
 							masterCardRequest.getPaymentDescription())
 					.set("reference", masterCardRequest.getReferenceNumber())
-					.set("token", masterCardRequest.getTokenId()));
+					.set("customer", masterCardRequest.getCustomerId()));
+			if ("APPROVED".equals(payment.get("paymentStatus"))) {
+				logger.info("Payment approved :");
+			}
+			// customer.
+			logger.info("Payment :", payment);
+			String paymentId = (String) payment.get("id");
+			String cardId = (String) payment.get("card.id");
+			String customerId = (String) payment.get("customer.id");
+			MasterCardResponse response = new MasterCardResponse();
+			response.setTokenId(masterCardRequest.getTokenId());
+			response.setCustomerId(customerId);
+			response.setCardPaymentId(paymentId);
+			return response;
+		} catch (Exception e) {
+			logger.error("Exception occured", e);
+		}
+		return null;
+	}
+	
+	
+	public MasterCardResponse findPayment(
+			final MasterCardRequest masterCardRequest) {
+		PaymentsApi.PUBLIC_KEY = this.getPublicKey();
+		PaymentsApi.PRIVATE_KEY = this.getPrivateKey();
+		Payment payment;
+		try {
+			payment = Payment.find(masterCardRequest.getPaymentId());
 			if ("APPROVED".equals(payment.get("paymentStatus"))) {
 				logger.info("Payment approved :");
 			}
