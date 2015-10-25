@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.omnisource.model.OmniSourceJsonModel;
 import com.omnisource.shopstyle.delegate.ShopStyleDelegate;
 import com.omnisource.shopstyle.request.SearchProductRequest;
@@ -27,7 +27,8 @@ public class ProductController {
 	@Autowired
 	ShopStyleDelegate shopStyleDelegate;
 
-	@RequestMapping(value = APIRequestMappings.SEARCH_PRODUCT, method = RequestMethod.POST)
+	@RequestMapping(value = APIRequestMappings.SEARCH_PRODUCT, method = {
+			RequestMethod.POST, RequestMethod.GET }, produces = "application/json")
 	public @ResponseBody
 	OmniSourceJsonModel searchProducts(
 			@RequestParam(value = "fts", required = true) String fts,
@@ -36,14 +37,16 @@ public class ProductController {
 		SearchProductRequest searchProductRequest = new SearchProductRequest();
 		searchProductRequest.setFts(fts);
 		searchProductRequest.setFilters(fl);
-		JsonArray productResults = shopStyleDelegate
-				.searchProducts(searchProductRequest);
+
+		String productResults = shopStyleDelegate.searchProducts(
+				searchProductRequest).toString();
+
 		Map<String, Object> header = new HashMap<String, Object>();
 		Map<String, Object> data = new HashMap<String, Object>();
 		model.setSpData(data);
 		model.setSpHeader(header);
 		header.put("status", true);
-		data.put("products", productResults);
+		data.put("products", new StringResponse(productResults));
 		List<String> errorList = new ArrayList<String>();
 		header.put("errorList", errorList);
 		return model;
