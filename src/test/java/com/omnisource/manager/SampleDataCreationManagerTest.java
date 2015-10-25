@@ -40,7 +40,7 @@ public class SampleDataCreationManagerTest {
 	private OrderDao orderDao;
 
 	String userName = "Jebastian Ponsekar";
-	String email = "jebastian.ponsekar@personalcapital.com";
+	String email = "jebastianp@gmail.com";
 
 	private User createUser() {
 		User user = new UserImpl();
@@ -151,6 +151,7 @@ public class SampleDataCreationManagerTest {
 		productDetails.addProperty("productName", "Nike");
 		productDetails.addProperty("productDescription", "Nike shoes");
 		productDetails.addProperty("productType", "Shoes");
+		productDetails.addProperty("amount", Double.valueOf(21.00));
 		order.setDetails(productDetails.toString());
 		order = orderDao.saveOrUpdate(order);
 		masterCardRequest.setReferenceNumber(String.valueOf(order.getId()));
@@ -167,7 +168,7 @@ public class SampleDataCreationManagerTest {
 		response = masterCardPaymentManager.createCardToken(masterCardRequest);
 		CardAccount cardAccount1 = this.createCardAccount(user);
 		cardAccount1.setName("TravelCard");
-		cardAccount1.setDescription(cardAccount.getName());
+		cardAccount1.setDescription(cardAccount1.getName());
 		cardAccount1.setTokenId(response.getTokenId());
 		cardAccount1.setCustomerId(response.getCustomerId());
 		cardAccount1 = cardAccountDao.saveOrUpdate(cardAccount1);
@@ -179,6 +180,7 @@ public class SampleDataCreationManagerTest {
 		productDetails1.addProperty("productName", "Sketchers");
 		productDetails1.addProperty("productDescription", "Sketchers shoes");
 		productDetails1.addProperty("productType", "Shoes");
+		productDetails1.addProperty("amount", Double.valueOf(25.00));
 		order1.setDetails(productDetails1.toString());
 		order1 = orderDao.saveOrUpdate(order1);
 		masterCardRequest.setReferenceNumber(String.valueOf(order1.getId()));
@@ -189,6 +191,5 @@ public class SampleDataCreationManagerTest {
 		order1.setExternalInvoiceId(response.getInvoiceId());
 		order1.setExternalPaymentId(response.getCardPaymentId());
 		order1 = orderDao.saveOrUpdate(order1);
-
 	}
 }
