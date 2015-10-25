@@ -40,13 +40,14 @@ public class ShopStyleDelegate {
 			StringBuilder queryString = new StringBuilder();
 			if (searchProductRequest.getFts() != null
 					&& searchProductRequest.getFts().length() > 0) {
-				queryString.append("&fts=" + searchProductRequest.getFts());
+				queryString.append("&fts="
+						+ searchProductRequest.getFts().replace(" ", "+"));
 			}
 			if (searchProductRequest.getFilters() != null
 					&& searchProductRequest.getFilters().length > 0) {
 				String[] filters = searchProductRequest.getFilters();
 				for (String filter : filters) {
-					queryString.append("&fl=" + filter);
+					queryString.append("&fl=" + filter.replace(" ", "+"));
 				}
 			}
 			HttpGet get = new HttpGet(apiRequest.append(queryString.toString())

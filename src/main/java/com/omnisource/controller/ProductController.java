@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.JsonObject;
 import com.omnisource.model.OmniSourceJsonModel;
 import com.omnisource.shopstyle.delegate.ShopStyleDelegate;
 import com.omnisource.shopstyle.request.SearchProductRequest;
