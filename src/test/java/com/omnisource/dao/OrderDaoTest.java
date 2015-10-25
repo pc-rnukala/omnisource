@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -18,6 +19,7 @@ import com.omnisource.data.Order;
 import com.omnisource.data.OrderImpl;
 import com.omnisource.data.User;
 import com.omnisource.data.UserImpl;
+import com.omnisource.utils.Utils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
@@ -32,7 +34,7 @@ public class OrderDaoTest {
 	@Autowired
 	private OrderDao orderDao;
 
-	//@Test
+	// @Test
 	public void testGetOrder() {
 		User user = createUser();
 		Assert.assertNotNull(user);
@@ -80,6 +82,7 @@ public class OrderDaoTest {
 		order.setUserId(user.getId());
 		order.setCardId(cardAccount.getId());
 		order.setExternalInvoiceId("Test invoice id");
+		order.setExternalPaymentId(Utils.generateGuid());
 		order.setLocationId("Test location");
 		order.setMerchantId("merchant id");
 		order.setAddressDetails("Testaddress");
