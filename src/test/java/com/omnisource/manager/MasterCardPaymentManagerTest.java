@@ -57,15 +57,132 @@ public class MasterCardPaymentManagerTest {
 		masterCardRequest.setAmount(Double.valueOf(100));
 		masterCardRequest.setPaymentDescription("Test description");
 		masterCardRequest.setReferenceNumber("Testrefer");
-		response = masterCardPaymentManager
-				.createPayment(masterCardRequest);
+		response = masterCardPaymentManager.createPayment(masterCardRequest);
 		Assert.assertNotNull(response);
 		Assert.assertNotNull(response.getCardPaymentId());
 		masterCardRequest.setPaymentId(response.getCardPaymentId());
-		response = masterCardPaymentManager
-				.findPayment(masterCardRequest);
+		response = masterCardPaymentManager.findPayment(masterCardRequest);
 		Assert.assertNotNull(response);
 		Assert.assertNotNull(response.getCardPaymentId());
+	}
+
+	@Test
+	public void testCreateTokenAndCustomerAndInvoice() {
+		MasterCardRequest masterCardRequest = createMasterCardRequest();
+		MasterCardResponse response = masterCardPaymentManager
+				.createCardToken(masterCardRequest);
+		Assert.assertNotNull(response);
+		Assert.assertNotNull(response.getTokenId());
+		Assert.assertNotNull(response.getCustomerId());
+		masterCardRequest.setTokenId(response.getTokenId());
+		masterCardRequest.setCustomerId(response.getCustomerId());
+		masterCardRequest.setAmount(Double.valueOf(100));
+		masterCardRequest.setPaymentDescription("Test description");
+		masterCardRequest.setReferenceNumber("Testrefer");
+		masterCardRequest.setTokenId(response.getTokenId());
+		masterCardRequest.setCustomerId(response.getCustomerId());
+		MasterCardInvoiceRequest masterCardInvoiceRequest = new MasterCardInvoiceRequest();
+		masterCardInvoiceRequest.setAmount(masterCardRequest.getAmount());
+		masterCardInvoiceRequest.setDescription("Test description");
+		masterCardInvoiceRequest.setMemo("Test product");
+		masterCardInvoiceRequest.setNote("Test note");
+		masterCardInvoiceRequest.setProductId("1");
+		masterCardInvoiceRequest.setQuantity(1);
+		masterCardInvoiceRequest.setStatus("OPEN");
+		masterCardInvoiceRequest.setReference("Test reference");
+		masterCardInvoiceRequest.setSuppliedDate(System.currentTimeMillis());
+
+		MasterCardInvoiceResponse masterCardInvoiceResponse = masterCardPaymentManager
+				.createInvoice(masterCardRequest, masterCardInvoiceRequest);
+		Assert.assertNotNull(masterCardInvoiceResponse);
+		Assert.assertNotNull(masterCardInvoiceResponse.getInvoiceId());
+
+	}
+
+	@Test
+	public void testCreateTokenAndCustomerAndInvoiceAndApprove() {
+		MasterCardRequest masterCardRequest = createMasterCardRequest();
+		MasterCardResponse response = masterCardPaymentManager
+				.createCardToken(masterCardRequest);
+		Assert.assertNotNull(response);
+		Assert.assertNotNull(response.getTokenId());
+		Assert.assertNotNull(response.getCustomerId());
+		masterCardRequest.setTokenId(response.getTokenId());
+		masterCardRequest.setCustomerId(response.getCustomerId());
+		masterCardRequest.setAmount(Double.valueOf(100));
+		masterCardRequest.setPaymentDescription("Test description approve");
+		masterCardRequest.setReferenceNumber("Testrefer approve");
+		masterCardRequest.setTokenId(response.getTokenId());
+		masterCardRequest.setCustomerId(response.getCustomerId());
+		MasterCardInvoiceRequest masterCardInvoiceRequest = new MasterCardInvoiceRequest();
+		masterCardInvoiceRequest.setAmount(masterCardRequest.getAmount());
+		masterCardInvoiceRequest.setDescription("Test descriptionapprove");
+		masterCardInvoiceRequest.setMemo("Test product approve");
+		masterCardInvoiceRequest.setNote("Test note approve");
+		masterCardInvoiceRequest.setProductId("1");
+		masterCardInvoiceRequest.setQuantity(1);
+
+		masterCardInvoiceRequest.setReference("Test reference approve");
+		masterCardInvoiceRequest.setSuppliedDate(System.currentTimeMillis());
+
+		MasterCardInvoiceResponse masterCardInvoiceResponse = masterCardPaymentManager
+				.createInvoice(masterCardRequest, masterCardInvoiceRequest);
+		Assert.assertNotNull(masterCardInvoiceResponse);
+		Assert.assertNotNull(masterCardInvoiceResponse.getInvoiceId());
+		masterCardInvoiceRequest = new MasterCardInvoiceRequest();
+		masterCardInvoiceRequest.setInvoiceId(masterCardInvoiceResponse
+				.getInvoiceId());
+		masterCardInvoiceRequest.setStatus("OPEN");
+		masterCardInvoiceResponse = masterCardPaymentManager
+				.approveInvoice(masterCardInvoiceRequest);
+		Assert.assertNotNull(masterCardInvoiceResponse);
+		Assert.assertNotNull(masterCardInvoiceResponse.getInvoiceId());
+		// Assert.assertNotNull(masterCardInvoiceResponse.getPaymentId());
+		// Assert.assertNotNull(masterCardInvoiceResponse.getPaymentInvoice());
+	}
+
+	@Test
+	public void testCreateTokenAndCustomerAndInvoiceAndInvoiceItem() {
+		MasterCardRequest masterCardRequest = createMasterCardRequest();
+		MasterCardResponse response = masterCardPaymentManager
+				.createCardToken(masterCardRequest);
+		Assert.assertNotNull(response);
+		Assert.assertNotNull(response.getTokenId());
+		Assert.assertNotNull(response.getCustomerId());
+		masterCardRequest.setTokenId(response.getTokenId());
+		masterCardRequest.setCustomerId(response.getCustomerId());
+		masterCardRequest.setAmount(Double.valueOf(100));
+		masterCardRequest.setPaymentDescription("Test description approve");
+		masterCardRequest.setReferenceNumber("Testrefer approve");
+		masterCardRequest.setTokenId(response.getTokenId());
+		masterCardRequest.setCustomerId(response.getCustomerId());
+		MasterCardInvoiceRequest masterCardInvoiceRequest = new MasterCardInvoiceRequest();
+		masterCardInvoiceRequest.setAmount(masterCardRequest.getAmount());
+		masterCardInvoiceRequest.setDescription("Test descriptionapprove");
+		masterCardInvoiceRequest.setMemo("Test product approve");
+		masterCardInvoiceRequest.setNote("Test note approve");
+		masterCardInvoiceRequest.setProductId("1");
+		masterCardInvoiceRequest.setQuantity(1);
+
+		masterCardInvoiceRequest.setReference("Test reference approve");
+		masterCardInvoiceRequest.setSuppliedDate(System.currentTimeMillis());
+
+		MasterCardInvoiceResponse masterCardInvoiceResponse = masterCardPaymentManager
+				.createInvoice(masterCardRequest, masterCardInvoiceRequest);
+		Assert.assertNotNull(masterCardInvoiceResponse);
+		Assert.assertNotNull(masterCardInvoiceResponse.getInvoiceId());
+
+		masterCardInvoiceRequest = new MasterCardInvoiceRequest();
+		masterCardInvoiceRequest.setInvoiceId(masterCardInvoiceResponse
+				.getInvoiceId());
+		masterCardInvoiceRequest.setAmount(Double.valueOf(100));
+		masterCardInvoiceRequest.setReference("Test reference approve");
+
+		masterCardInvoiceResponse = masterCardPaymentManager
+				.invoiceItem(masterCardInvoiceRequest);
+		Assert.assertNotNull(masterCardInvoiceResponse);
+		Assert.assertNotNull(masterCardInvoiceResponse.getInvoiceId());
+		Assert.assertNotNull(masterCardInvoiceResponse.getPaymentInvoice());
 	}
 
 	@Test
