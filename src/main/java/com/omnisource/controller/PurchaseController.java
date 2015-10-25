@@ -95,7 +95,7 @@ public class PurchaseController {
 								productDescription);
 						productDetails.addProperty("productType", productType);
 						productDetails.addProperty("amount",
-								masterCardRequest.getAmount());
+								Double.valueOf(amount));
 						order.setDetails(productDetails.toString());
 						Order createdOrder = orderDao.saveOrUpdate(order);
 						if (createdOrder != null) {
