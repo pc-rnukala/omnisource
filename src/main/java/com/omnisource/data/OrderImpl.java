@@ -30,14 +30,8 @@ public class OrderImpl implements Order {
 	private String locationId;
 	private String addressDetails;
 
-	/*
-	 * (non-Javadoc)
-	 */
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.omnisource.dao.CardAccountNew#getId()
-	 */
+	
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -55,11 +49,6 @@ public class OrderImpl implements Order {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.omnisource.dao.CardAccountNew#setId(java.lang.Long)
-	 */
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see com.omnisource.data.Order#setId(java.lang.Long)
 	 */
 	@Override
@@ -67,11 +56,7 @@ public class OrderImpl implements Order {
 		this.id = id;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.omnisource.dao.CardAccountNew#getUserId()
-	 */
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -83,11 +68,7 @@ public class OrderImpl implements Order {
 		return userId;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.omnisource.dao.CardAccountNew#setUserId(java.lang.Long)
-	 */
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -99,9 +80,7 @@ public class OrderImpl implements Order {
 		this.userId = userId;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 */
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -119,14 +98,7 @@ public class OrderImpl implements Order {
 		return createdDate;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 */
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.omnisource.dao.CardAccountNew#setCreatedDate(java.util.Date)
-	 */
+	
 
 	/*
 	 * (non-Javadoc)
@@ -138,14 +110,7 @@ public class OrderImpl implements Order {
 		this.createdDate = createdDate;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 */
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.omnisource.dao.CardAccountNew#getUpdatedDate()
-	 */
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -158,11 +123,7 @@ public class OrderImpl implements Order {
 		return updatedDate;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.omnisource.dao.CardAccountNew#setUpdatedDate(java.util.Date)
-	 */
+	
 	/*
 	 * (non-Javadoc)
 	 * 

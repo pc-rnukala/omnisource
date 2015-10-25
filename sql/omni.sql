@@ -102,7 +102,7 @@ DROP TABLE IF EXISTS `ORDER`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ORDER` (
   `order_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `external_invoice_id` varchar(255) NOT NULL,
+  `external_invoice_id` varchar(255) NULL,
   `user_id` bigint(20) NOT NULL,
   `card_id` bigint(20) NOT NULL,
   `merchant_id` varchar(255) NULL,
