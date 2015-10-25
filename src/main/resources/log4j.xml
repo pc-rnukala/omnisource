@@ -3,7 +3,7 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
 	<appender class="org.apache.log4j.RollingFileAppender" name="http">
-		<param value="test_httplogger.log" name="File" />
+		<param value="${catalina.home}/logs/httplogger.log" name="File" />
 		<param name="MaxFileSize" value="20MB" />
 		<param name="MaxBackupIndex" value="20" />
 		<param name="append" value="true" />
@@ -12,7 +12,7 @@
 		</layout>
 	</appender>
 	<appender class="org.apache.log4j.RollingFileAppender" name="main">
-		<param value="test_main.log" name="File" />
+		<param value="${catalina.home}/logs/main.log" name="File" />
 		<param name="MaxFileSize" value="10MB" />
 		<param name="MaxBackupIndex" value="10" />
 		<param name="append" value="true" />
@@ -21,7 +21,7 @@
 		</layout>
 	</appender>
 	<appender class="org.apache.log4j.RollingFileAppender" name="sql">
-		<param value="test_sql.log" name="File" />
+		<param value="${catalina.home}/logs/sql.log" name="File" />
 		<param name="MaxFileSize" value="10MB" />
 		<param name="MaxBackupIndex" value="10" />
 		<param name="append" value="true" />
@@ -30,7 +30,7 @@
 		</layout>
 	</appender>
 	<appender class="org.apache.log4j.RollingFileAppender" name="thirdparty">
-		<param value="test_thirdparty.log" name="File" />
+		<param value="${catalina.home}/logs/thirdparty.log" name="File" />
 		<param name="MaxFileSize" value="10MB" />
 		<param name="MaxBackupIndex" value="10" />
 		<param name="append" value="true" />
@@ -39,7 +39,7 @@
 		</layout>
 	</appender>
 	<appender class="org.apache.log4j.RollingFileAppender" name="thirdparty_hibernate">
-		<param value="test_thirdparty_hibernate.log" name="File" />
+		<param value="${catalina.home}/logs/thirdparty_hibernate.log" name="File" />
 		<param name="MaxFileSize" value="10MB" />
 		<param name="MaxBackupIndex" value="10" />
 		<param name="append" value="true" />
@@ -48,7 +48,7 @@
 		</layout>
 	</appender>	
 	<appender class="org.apache.log4j.RollingFileAppender" name="cache">
-		<param value="test_cache.log" name="File" />
+		<param value="${catalina.home}/logs/cache.log" name="File" />
 		<param name="MaxFileSize" value="10MB" />
 		<param name="MaxBackupIndex" value="10" />
 		<param name="append" value="true" />
@@ -67,7 +67,7 @@
 		<appender-ref ref="sql" />
 	</logger>
 	<logger name="org.hibernate.cache">
-		<level value="debug" />
+		<level value="warn" />
 		<appender-ref ref="thirdparty" />
 	</logger>
 	<!-- Enable trace to see Hibernate Queries -->
@@ -80,7 +80,7 @@
 		<appender-ref ref="thirdparty" />
 	</logger>
 	<logger name="com.mysql.jdbc.Driver" additivity="false">
-		<level value="debug" />
+		<level value="warn" />
 		<appender-ref ref="thirdparty" />
 	</logger>
 
@@ -117,7 +117,7 @@
 		<appender-ref ref="thirdparty" />
 	</logger>
 	<logger name="org.springframework.orm.jpa" additivity="false">
-		<level value="trace" />
+		<level value="warn" />
 		<appender-ref ref="thirdparty" />
 	</logger>
 	<logger name="org.springframework.aop" additivity="false">
@@ -130,10 +130,13 @@
 	</logger>
 	<logger name="org.springframework" additivity="false">
 		<level value="info" />
-		<appender-ref ref="console" />
 		<appender-ref ref="thirdparty" />
 	</logger>
 	<logger name="com.omnisource" additivity="false">
+		<level value="info" />
+		<appender-ref ref="main" />
+	</logger>
+	<logger name="com.intuit.aggcat" additivity="false">
 		<level value="info" />
 		<appender-ref ref="main" />
 	</logger>

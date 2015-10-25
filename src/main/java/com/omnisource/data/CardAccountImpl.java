@@ -8,14 +8,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- *
+ * 
  * @author jponsekar
- *
+ * 
  */
 @Entity
 @Table(name = "CARD_ACCOUNT")
@@ -31,6 +32,9 @@ public class CardAccountImpl implements CardAccount {
 	private String tokenId;
 	private String customerId;
 
+	private static final String DEFAULT_MASTER_URL = "masterCard.png";
+	private static final String DEFAULT_VISA_URL = "visaCard.png";
+
 	/*
 	 * (non-Javadoc)
 	 */
@@ -43,7 +47,7 @@ public class CardAccountImpl implements CardAccount {
 	@Id
 	@Column(name = "card_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonProperty("card_id")
+	@JsonProperty("cardId")
 	public Long getId() {
 		return id;
 	}
@@ -65,6 +69,7 @@ public class CardAccountImpl implements CardAccount {
 	 */
 	@Override
 	@Column(name = "user_id")
+	@JsonIgnore
 	public Long getUserId() {
 		return userId;
 	}
@@ -140,6 +145,7 @@ public class CardAccountImpl implements CardAccount {
 	 */
 	@Override
 	@Column(name = "name")
+	@JsonProperty("cardName")
 	public String getName() {
 		return name;
 	}
@@ -161,6 +167,7 @@ public class CardAccountImpl implements CardAccount {
 	 */
 	@Override
 	@Column(name = "description")
+	@JsonProperty("cardDescription")
 	public String getDescription() {
 		return description;
 	}
@@ -182,6 +189,7 @@ public class CardAccountImpl implements CardAccount {
 	 */
 	@Override
 	@Column(name = "card_type")
+	@JsonProperty("cardType")
 	public String getCardType() {
 		return cardType;
 	}
@@ -203,6 +211,7 @@ public class CardAccountImpl implements CardAccount {
 	 */
 	@Override
 	@Column(name = "token_id")
+	@JsonProperty("tokenId")
 	public String getTokenId() {
 		return tokenId;
 	}
@@ -219,6 +228,7 @@ public class CardAccountImpl implements CardAccount {
 
 	@Override
 	@Column(name = "customer_id")
+	@JsonIgnore
 	public String getCustomerId() {
 		return customerId;
 	}
@@ -226,5 +236,17 @@ public class CardAccountImpl implements CardAccount {
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
-	
+
+	@Transient
+	public String getImageUrl() {
+		if (getCardType() != null
+				&& getCardType().toLowerCase().contains("master")) {
+			return DEFAULT_MASTER_URL;
+		} else if (getCardType() != null
+				&& getCardType().toLowerCase().contains("visa")) {
+			return DEFAULT_VISA_URL;
+		}
+		return DEFAULT_MASTER_URL;
+	}
+
 }

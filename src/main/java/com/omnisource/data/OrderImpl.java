@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  */
 @Entity
-@Table(name = "ORDER")
+@Table(name = "ORDER",catalog="omnidb")
 public class OrderImpl implements Order {
 	private Long id;
 	private Date createdDate;

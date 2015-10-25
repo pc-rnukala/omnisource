@@ -19,7 +19,7 @@ import com.omnisource.data.UserImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
-@TransactionConfiguration
+@TransactionConfiguration(defaultRollback = false)
 @Transactional(value = "omniTran")
 public class CardAccountDaoTest {
 	@Autowired
