@@ -14,41 +14,49 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.JsonArray;
+import com.omnisource.dao.CardAccountDao;
+import com.omnisource.dao.UserDao;
+import com.omnisource.data.CardAccount;
+import com.omnisource.data.User;
 import com.omnisource.model.OmniSourceJsonModel;
-import com.omnisource.shopstyle.delegate.ShopStyleDelegate;
-import com.omnisource.shopstyle.request.SearchProductRequest;
 
 @Controller
-public class ProductController {
+public class CardController {
 	private static final Logger logger = LoggerFactory
-			.getLogger(ProductController.class);
+			.getLogger(CardController.class);
 
 	@Autowired
-	ShopStyleDelegate shopStyleDelegate;
+	CardAccountDao cardAccountDao;
 
-	@RequestMapping(value = APIRequestMappings.SEARCH_PRODUCT, method = {
+	@Autowired
+	UserDao userDao;
+
+	@RequestMapping(value = APIRequestMappings.GET_CARDS, method = {
 			RequestMethod.POST, RequestMethod.GET }, produces = "application/json")
 	public @ResponseBody
-	OmniSourceJsonModel searchProducts(
-			@RequestParam(value = "fts", required = true) String fts,
-			@RequestParam(value = "fl", required = false) String[] fl) {
+	OmniSourceJsonModel getCards(
+			@RequestParam(value = "customerGuid", required = true) String customerGuid) {
 		OmniSourceJsonModel model = new OmniSourceJsonModel();
-		SearchProductRequest searchProductRequest = new SearchProductRequest();
-		searchProductRequest.setFts(fts);
-		searchProductRequest.setFilters(fl);
-
-		JsonArray searchResults = shopStyleDelegate
-				.searchProducts(searchProductRequest);
-		String productResults = searchResults != null ? searchResults
-				.toString() : "";
+		User user = userDao.getUserByGuid(customerGuid);
 		Map<String, Object> header = new HashMap<String, Object>();
 		Map<String, Object> data = new HashMap<String, Object>();
 		model.setSpData(data);
 		model.setSpHeader(header);
-		header.put("status", true);
-		data.put("products", new StringResponse(productResults));
+		boolean status = false;
 		List<String> errorList = new ArrayList<String>();
+		if (user != null) {
+			List<CardAccount> cardAccounts = cardAccountDao
+					.getUserCardAccounts(user);
+			status = true;
+			data.put("cards", cardAccounts != null ? cardAccounts
+					: new ArrayList<>());
+		} else {
+			errorList.add("User doesn't exist for customerGuid: "
+					+ customerGuid);
+			status = false;
+			data.put("cards", new ArrayList<>());
+		}
+		header.put("status", status);
 		header.put("errorList", errorList);
 		return model;
 	}
