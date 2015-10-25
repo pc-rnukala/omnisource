@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,8 +23,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Table(name = "ORDER", catalog = "omnidb")
 public class OrderImpl implements Order {
 	private Long id;
-	private Date createdDate;
-	private Date updatedDate;
 	private String externalInvoiceId;
 	private Long userId;
 	private Long cardId;
@@ -30,6 +30,18 @@ public class OrderImpl implements Order {
 	private String locationId;
 	private String addressDetails;
 	private String externalPaymentId;
+
+	private Date createdDate = new Date();
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
+	private Date updatedDate = new Date();
 
 	@Column(name = "external_payment_id")
 	public String getExternalPaymentId() {
@@ -117,16 +129,6 @@ public class OrderImpl implements Order {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.omnisource.data.Order#setCreatedDate(java.util.Date)
-	 */
-	@Override
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see com.omnisource.data.Order#getUpdatedDate()
 	 */
 	@Override
@@ -134,16 +136,6 @@ public class OrderImpl implements Order {
 	@JsonIgnore
 	public Date getUpdatedDate() {
 		return updatedDate;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.omnisource.data.Order#setUpdatedDate(java.util.Date)
-	 */
-	@Override
-	public void setUpdatedDate(Date updatedDate) {
-		this.updatedDate = updatedDate;
 	}
 
 	/*
@@ -239,5 +231,4 @@ public class OrderImpl implements Order {
 	public void setAddressDetails(String addressDetails) {
 		this.addressDetails = addressDetails;
 	}
-
 }
