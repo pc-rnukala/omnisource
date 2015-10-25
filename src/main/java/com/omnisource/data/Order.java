@@ -84,4 +84,12 @@ public interface Order {
 
 	public void setAddressDetails(String addressDetails);
 
+	public String getExternalPaymentId();
+
+	public void setExternalPaymentId(String externalPaymentId);
+
+	public String getDetails();
+
+	public void setDetails(String details);
+
 }

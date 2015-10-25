@@ -12,8 +12,12 @@ import com.omnisource.data.User;
 
 public class CardAccountDaoImpl extends DaoImpl implements CardAccountDao {
 
-	/* (non-Javadoc)
-	 * @see com.omnisource.dao.CardAccount#saveOrUpdate(com.omnisource.data.CardAccount)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.omnisource.dao.CardAccount#saveOrUpdate(com.omnisource.data.CardAccount
+	 * )
 	 */
 
 	@Transactional(value = "omniTran", readOnly = false, propagation = Propagation.REQUIRED)
@@ -25,8 +29,12 @@ public class CardAccountDaoImpl extends DaoImpl implements CardAccountDao {
 		return cardAccountLocal;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.omnisource.dao.CardAccount#deleteCardAccount(com.omnisource.data.CardAccount)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.omnisource.dao.CardAccount#deleteCardAccount(com.omnisource.data.
+	 * CardAccount)
 	 */
 	@Transactional(value = "omniTran", readOnly = false, propagation = Propagation.REQUIRED)
 	public boolean deleteCardAccount(CardAccount cardAccount) {
@@ -42,8 +50,10 @@ public class CardAccountDaoImpl extends DaoImpl implements CardAccountDao {
 			return false;
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.omnisource.dao.CardAccount#findOrder(java.lang.Long)
 	 */
 
@@ -59,7 +69,7 @@ public class CardAccountDaoImpl extends DaoImpl implements CardAccountDao {
 			return null;
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Transactional(value = "omniTran", readOnly = true, propagation = Propagation.SUPPORTS)
 	public List<CardAccount> getUserCardAccounts(final User user) {
@@ -75,6 +85,26 @@ public class CardAccountDaoImpl extends DaoImpl implements CardAccountDao {
 			}
 		} catch (RuntimeException re) {
 			logger.error("getUserCardAccounts", re);
+			throw re;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(value = "omniTran", readOnly = true, propagation = Propagation.SUPPORTS)
+	public CardAccount getUserCardAccount(final User user, final String cardId) {
+		try {
+			final String queryString = "select model from CardAccountImpl model where model.userId=:userId and model.id=:cardId";
+			Query query = em.createQuery(queryString);
+			query.setParameter("userId", user.getId());
+			query.setParameter("cardId", Long.valueOf(cardId));
+			List<CardAccount> result = query.getResultList();
+			if (result != null) {
+				return result.get(0);
+			} else {
+				return null;
+			}
+		} catch (RuntimeException re) {
+			logger.error("getUserCardAccount", re);
 			throw re;
 		}
 	}

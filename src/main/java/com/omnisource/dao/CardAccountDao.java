@@ -18,4 +18,6 @@ public interface CardAccountDao {
 
 	public List<CardAccount> getUserCardAccounts(final User user);
 
+	public CardAccount getUserCardAccount(final User user, final String cardId);
+
 }

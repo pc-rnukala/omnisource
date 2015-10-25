@@ -133,7 +133,7 @@
 		<appender-ref ref="console" />
 		<appender-ref ref="thirdparty" />
 	</logger>
-	<logger name="com.omnisource" additivity="false">
+	<logger name="com.proximitymarketing" additivity="false">
 		<level value="info" />
 		<appender-ref ref="main" />
 	</logger>

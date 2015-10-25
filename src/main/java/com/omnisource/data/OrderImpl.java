@@ -13,12 +13,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- *
+ * 
  * @author jponsekar
- *
+ * 
  */
 @Entity
-@Table(name = "ORDER",catalog="omnidb")
+@Table(name = "ORDER", catalog = "omnidb")
 public class OrderImpl implements Order {
 	private Long id;
 	private Date createdDate;
@@ -29,9 +29,28 @@ public class OrderImpl implements Order {
 	private String merchantId;
 	private String locationId;
 	private String addressDetails;
+	private String externalPaymentId;
 
-	
-	
+	@Column(name = "external_payment_id")
+	public String getExternalPaymentId() {
+		return externalPaymentId;
+	}
+
+	public void setExternalPaymentId(String externalPaymentId) {
+		this.externalPaymentId = externalPaymentId;
+	}
+
+	@Column(name = "product_details")
+	public String getDetails() {
+		return details;
+	}
+
+	public void setDetails(String details) {
+		this.details = details;
+	}
+
+	private String details;
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -56,7 +75,6 @@ public class OrderImpl implements Order {
 		this.id = id;
 	}
 
-	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -68,7 +86,6 @@ public class OrderImpl implements Order {
 		return userId;
 	}
 
-	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -80,7 +97,6 @@ public class OrderImpl implements Order {
 		this.userId = userId;
 	}
 
-	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -98,8 +114,6 @@ public class OrderImpl implements Order {
 		return createdDate;
 	}
 
-	
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -110,7 +124,6 @@ public class OrderImpl implements Order {
 		this.createdDate = createdDate;
 	}
 
-	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -123,7 +136,6 @@ public class OrderImpl implements Order {
 		return updatedDate;
 	}
 
-	
 	/*
 	 * (non-Javadoc)
 	 * 
