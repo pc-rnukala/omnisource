@@ -32,8 +32,8 @@ public class CardAccountImpl implements CardAccount {
 	private String tokenId;
 	private String customerId;
 
-	private static final String DEFAULT_MASTER_URL = "https://business.bankofamerica.com/cpcms/ECOMB/group/UDAP-BUSCARD/2105871/Mkt_Card_Product_Page/yaab_8api_buscshug_mc_chp.png";
-	private static final String DEFAULT_VISA_URL = "https://creditcards.chase.com/T-Marketplace/1110001/images/cardart/sapphire_preferred_card.png";
+	private static final String DEFAULT_MASTER_URL = "masterCard.png";
+	private static final String DEFAULT_VISA_URL = "visaCard.png";
 
 	/*
 	 * (non-Javadoc)
