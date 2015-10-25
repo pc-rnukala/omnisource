@@ -43,21 +43,27 @@ public class CardController {
 		model.setSpData(data);
 		model.setSpHeader(header);
 		boolean status = false;
-		List<String> errorList = new ArrayList<String>();
-		if (user != null) {
-			List<CardAccount> cardAccounts = cardAccountDao
-					.getUserCardAccounts(user);
-			status = true;
-			data.put("cards", cardAccounts != null ? cardAccounts
-					: new ArrayList<>());
-		} else {
-			errorList.add("User doesn't exist for customerGuid: "
-					+ customerGuid);
-			status = false;
-			data.put("cards", new ArrayList<>());
+		try {
+			List<String> errorList = new ArrayList<String>();
+			if (user != null) {
+				List<CardAccount> cardAccounts = cardAccountDao
+						.getUserCardAccounts(user);
+				status = true;
+				data.put("cards", cardAccounts != null ? cardAccounts
+						: new ArrayList<>());
+				logger.info("Card Size is: " + cardAccounts);
+			} else {
+				errorList.add("User doesn't exist for customerGuid: "
+						+ customerGuid);
+				status = false;
+				data.put("cards", new ArrayList<>());
+			}
+			header.put("status", status);
+			header.put("errorList", errorList);
+		} catch (Exception e) {
+			logger.error(
+					"Exception while fetching the Cards: " + e.getMessage(), e);
 		}
-		header.put("status", status);
-		header.put("errorList", errorList);
 		return model;
 	}
 }
