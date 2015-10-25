@@ -14,4 +14,9 @@
 	</bean>
 	<bean id="shopStyleDelegate" class="com.omnisource.shopstyle.delegate.ShopStyleDelegate">
 	</bean>
+	<bean id="masterCardPaymentManager" class="com.omnisource.manager.MasterCardPaymentManager">
+		<property name="privateKey" value="${master_card_private_key}" />
+		<property name="publicKey" value="${master_card_public_key}" />
+	</bean>
+
 </beans>
