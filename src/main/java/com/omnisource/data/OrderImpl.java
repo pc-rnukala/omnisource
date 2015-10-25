@@ -28,16 +28,13 @@ public class OrderImpl implements Order {
 	private Long cardId;
 	private String merchantId;
 	private String locationId;
+	private String addressDetails;
 
-	/*
-	 * (non-Javadoc)
-	 */
+	
+	
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.omnisource.dao.CardAccountNew#getId()
-	 */
-	/* (non-Javadoc)
 	 * @see com.omnisource.data.Order#getId()
 	 */
 	@Override
@@ -52,118 +49,94 @@ public class OrderImpl implements Order {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.omnisource.dao.CardAccountNew#setId(java.lang.Long)
-	 */
-	/* (non-Javadoc)
 	 * @see com.omnisource.data.Order#setId(java.lang.Long)
 	 */
 	@Override
-
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.omnisource.dao.CardAccountNew#getUserId()
-	 */
-	/* (non-Javadoc)
 	 * @see com.omnisource.data.Order#getUserId()
 	 */
 	@Override
-
 	@Column(name = "user_id")
 	public Long getUserId() {
 		return userId;
 	}
 
+	
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.omnisource.dao.CardAccountNew#setUserId(java.lang.Long)
-	 */
-	/* (non-Javadoc)
 	 * @see com.omnisource.data.Order#setUserId(java.lang.Long)
 	 */
-	
+
 	@Override
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 */
+	
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see com.omnisource.dao.CardAccountNew#getCreatedDate()
 	 */
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.omnisource.data.Order#getCreatedDate()
 	 */
 	@Override
-
 	@Column(name = "created_date")
 	@JsonIgnore
 	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 */
+	
+
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.omnisource.dao.CardAccountNew#setCreatedDate(java.util.Date)
-	 */
-
-	/* (non-Javadoc)
 	 * @see com.omnisource.data.Order#setCreatedDate(java.util.Date)
 	 */
 	@Override
-
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 */
+	
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.omnisource.dao.CardAccountNew#getUpdatedDate()
-	 */
-	/* (non-Javadoc)
 	 * @see com.omnisource.data.Order#getUpdatedDate()
 	 */
 	@Override
-
 	@Column(name = "updated_date")
 	@JsonIgnore
 	public Date getUpdatedDate() {
 		return updatedDate;
 	}
 
+	
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.omnisource.dao.CardAccountNew#setUpdatedDate(java.util.Date)
-	 */
-	/* (non-Javadoc)
 	 * @see com.omnisource.data.Order#setUpdatedDate(java.util.Date)
 	 */
 	@Override
-	
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
 
-	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.omnisource.data.Order#getExternalInvoiceId()
 	 */
 	@Override
@@ -172,7 +145,9 @@ public class OrderImpl implements Order {
 		return externalInvoiceId;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.omnisource.data.Order#setExternalInvoiceId(java.lang.String)
 	 */
 	@Override
@@ -180,7 +155,9 @@ public class OrderImpl implements Order {
 		this.externalInvoiceId = externalInvoiceId;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.omnisource.data.Order#getCardId()
 	 */
 	@Override
@@ -189,7 +166,9 @@ public class OrderImpl implements Order {
 		return cardId;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.omnisource.data.Order#setCardId(java.lang.Long)
 	 */
 	@Override
@@ -197,8 +176,9 @@ public class OrderImpl implements Order {
 		this.cardId = cardId;
 	}
 
-	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.omnisource.data.Order#getMerchantId()
 	 */
 	@Override
@@ -207,7 +187,9 @@ public class OrderImpl implements Order {
 		return merchantId;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.omnisource.data.Order#setMerchantId(java.lang.String)
 	 */
 	@Override
@@ -215,7 +197,9 @@ public class OrderImpl implements Order {
 		this.merchantId = merchantId;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.omnisource.data.Order#getLocationId()
 	 */
 	@Override
@@ -224,11 +208,24 @@ public class OrderImpl implements Order {
 		return locationId;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.omnisource.data.Order#setLocationId(java.lang.String)
 	 */
 	@Override
 	public void setLocationId(String locationId) {
 		this.locationId = locationId;
 	}
+
+	@Override
+	@Column(name = "address_details")
+	public String getAddressDetails() {
+		return addressDetails;
+	}
+
+	public void setAddressDetails(String addressDetails) {
+		this.addressDetails = addressDetails;
+	}
+
 }

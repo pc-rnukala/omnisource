@@ -11,4 +11,6 @@
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 	<bean id="userDao" class="com.omnisource.dao.UserDaoImpl" />
+	<bean id="orderDao" class="com.omnisource.dao.OrderDaoImpl" />
+	<bean id="cardAccountDaoImpl" class="com.omnisource.dao.CardAccountDaoImpl" />
 </beans>
