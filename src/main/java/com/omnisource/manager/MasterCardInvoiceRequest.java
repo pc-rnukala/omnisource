@@ -8,6 +8,10 @@ public class MasterCardInvoiceRequest {
 	private String reference;
 	private String taxId;
 	private Long suppliedDate;
+	private String memo;
+	private String note;
+	private String invoiceId;
+	private String status;
 
 	public String getProductId() {
 		return productId;
@@ -63,6 +67,38 @@ public class MasterCardInvoiceRequest {
 
 	public void setSuppliedDate(Long suppliedDate) {
 		this.suppliedDate = suppliedDate;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public String getInvoiceId() {
+		return invoiceId;
+	}
+
+	public void setInvoiceId(String invoiceId) {
+		this.invoiceId = invoiceId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }
